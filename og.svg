@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Warm cream background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F7F2EA"/>
+      <stop offset="100%" stop-color="#EDE8DF"/>
+    </linearGradient>
+    <!-- Subtle right-side accent -->
+    <radialGradient id="accent" cx="900" cy="315" r="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2D5F4E" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#2D5F4E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#accent)"/>
+
+  <!-- Left forest-green accent bar -->
+  <rect x="0" y="0" width="6" height="630" fill="#2D5F4E"/>
+
+  <!-- YS monogram circle -->
+  <circle cx="80" cy="80" r="36" fill="#2D5F4E"/>
+  <text x="80" y="88" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="white">YS</text>
+
+  <!-- Name -->
+  <text x="130" y="88" font-family="Georgia, serif" font-size="22" font-weight="600" fill="#1F2A24" letter-spacing="-0.3">Yahya Shihabe</text>
+
+  <!-- Terracotta divider line -->
+  <rect x="80" y="152" width="80" height="3" fill="#C77A4A" rx="2"/>
+
+  <!-- Main heading line 1 -->
+  <text x="80" y="252" font-family="Georgia, serif" font-size="68" font-weight="700" fill="#1F2A24" letter-spacing="-1.5">AI som sparar tid och pengar</text>
+
+  <!-- Main heading line 2 — italic terracotta -->
+  <text x="80" y="336" font-family="Georgia, serif" font-size="68" font-weight="700" font-style="italic" fill="#C77A4A" letter-spacing="-1.5">för ditt företag.</text>
+
+  <!-- Subheading -->
+  <text x="80" y="420" font-family="Arial, sans-serif" font-size="26" fill="#5C6660" letter-spacing="-0.2">AI-assistenter och automationer för svenska småföretag.</text>
+
+  <!-- Meta row -->
+  <text x="80" y="556" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="#2D5F4E" letter-spacing="1.5" text-transform="uppercase">PITEÅ · NORRBOTTEN</text>
+  <circle cx="255" cy="549" r="3" fill="#5C6660" opacity="0.5"/>
+  <text x="270" y="556" font-family="Arial, sans-serif" font-size="18" fill="#5C6660" letter-spacing="0.5">Lokal utvecklare · Fast pris · Snabb leverans</text>
+
+  <!-- Bottom rule -->
+  <rect x="80" y="580" width="1040" height="1" fill="#2D5F4E" opacity="0.12"/>
+
+  <!-- URL -->
+  <text x="80" y="610" font-family="Arial, sans-serif" font-size="17" fill="#5C6660">yahya.shehabi1@gmail.com</text>
+</svg>

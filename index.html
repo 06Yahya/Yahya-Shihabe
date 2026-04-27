@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yahya Shihabe — AI för småföretag</title>
+  <meta name="description" content="AI-chatbottar, webbappar och automationer byggda för svenska småföretag. Lokal utvecklare, snabb leverans, fast pris." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Yahya Shihabe — AI för småföretag" />
+  <meta property="og:description" content="AI-chatbottar, webbappar och automationer byggda för svenska småföretag. Lokal utvecklare, snabb leverans, fast pris." />
+  <meta property="og:image" content="/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="sv_SE" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Yahya Shihabe — AI för småföretag" />
+  <meta name="twitter:description" content="AI-chatbottar, webbappar och automationer byggda för svenska småföretag. Lokal utvecklare, snabb leverans, fast pris." />
+  <meta name="twitter:image" content="/og.png" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F7F2EA',
+            forest: '#2D5F4E',
+            'forest-dark': '#1F2A24',
+            'forest-deep': '#1A3D31',
+            terracotta: '#C77A4A',
+            muted: '#5C6660',
+          },
+          fontFamily: {
+            display: ['Fraunces', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.18s; }
+    .d3 { transition-delay: 0.28s; }
+    .d4 { transition-delay: 0.38s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* Nav scroll state */
+    #site-nav {
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    #site-nav.scrolled {
+      background-color: rgba(247, 242, 234, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(31,42,36,0.07);
+    }
+
+    /* Buttons */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #2D5F4E;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-cta:hover { background: #1F2A24; transform: translateY(-1px); }
+    .btn-cta:active { transform: none; }
+    .btn-cta-sm { padding: 10px 20px; font-size: 0.875rem; }
+    .btn-cta-md { padding: 14px 28px; font-size: 1rem; }
+    .btn-cta-lg { padding: 17px 36px; font-size: 1.0625rem; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1.5px solid #2D5F4E;
+      color: #2D5F4E;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-ghost:hover { background: #2D5F4E; color: #fff; }
+
+    /* Card lift */
+    .card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+    .card-link { cursor: pointer; }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(31,42,36,0.09);
+    }
+
+    /* Demo card gradient header */
+    .demo-header {
+      height: 136px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Step decorative number */
+    .step-num {
+      font-family: 'Fraunces', serif;
+      font-size: 5.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #C77A4A;
+      opacity: 0.5;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Section divider */
+    .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(45,95,78,0.18), transparent);
+    }
+
+    /* Focus visible */
+    *:focus-visible {
+      outline: 2px solid #2D5F4E;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* YS monogram */
+    .ys-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #2D5F4E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Grain texture */
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body class="bg-cream font-sans text-forest-dark antialiased">
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ===================================================
+     NAV
+==================================================== -->
+<header id="site-nav" class="fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#" aria-label="Yahya Shihabe — tillbaka till toppen" class="flex items-center gap-2.5 no-underline">
+      <div class="ys-mark" aria-hidden="true">
+        <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle"
+                font-family="Fraunces, serif" font-size="11" font-weight="600" fill="white">YS</text>
+        </svg>
+      </div>
+      <span class="font-display font-semibold text-forest-dark text-[0.9375rem] hidden sm:block tracking-[-0.01em]">
+        Yahya Shihabe
+      </span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted" aria-label="Sidnavigering">
+      <a href="#tjanster" class="hover:text-forest-dark transition-colors duration-200">Tjänster</a>
+      <a href="#demos"    class="hover:text-forest-dark transition-colors duration-200">Demos</a>
+      <a href="#om-mig"   class="hover:text-forest-dark transition-colors duration-200">Om mig</a>
+    </nav>
+
+    <!-- CTA -->
+    <a id="nav-cta" href="#BOOKING" target="_blank" rel="noopener noreferrer"
+       class="btn-cta btn-cta-sm">
+      Boka samtal
+    </a>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================================================
+     HERO
+==================================================== -->
+<section id="hero" class="min-h-screen flex flex-col justify-center px-5 sm:px-8 pt-28 pb-16">
+  <div class="max-w-6xl mx-auto w-full">
+
+    <!-- Eyebrow -->
+    <div class="reveal flex items-center gap-3 mb-9">
+      <span class="block h-px w-10 bg-terracotta" aria-hidden="true"></span>
+      <span class="text-terracotta text-xs font-medium tracking-[0.14em] uppercase">AI-lösningar · Piteå · Norrbotten</span>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="reveal d1 font-display font-semibold text-forest-dark leading-[1.06] tracking-[-0.02em] mb-8"
+        style="font-size: clamp(2.6rem, 6.5vw, 5.25rem); max-width: 860px;">
+      AI som sparar
+      <em style="font-style:italic; color:#C77A4A;">tid och pengar</em><br class="hidden sm:block" />
+      för ditt företag.
+    </h1>
+
+    <!-- Sub -->
+    <p class="reveal d2 text-muted leading-relaxed mb-11"
+       style="font-size: clamp(1.0625rem, 1.9vw, 1.25rem); max-width: 530px; line-height: 1.65;">
+      Jag bygger AI-assistenter och automationer som svarar på kundfrågor 24/7 — så du slipper.
+    </p>
+
+    <!-- CTAs -->
+    <div class="reveal d3 flex items-center gap-5 flex-wrap">
+      <a id="hero-cta" href="#BOOKING" target="_blank" rel="noopener noreferrer"
+         class="btn-cta btn-cta-lg">
+        Boka samtal
+        <!-- chevron-right -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2.5"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </a>
+      <a href="#demos"
+         class="text-sm font-medium text-muted hover:text-forest-dark transition-colors duration-200 flex items-center gap-1.5">
+        Se demos
+        <!-- chevron-down -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Decorative meta row -->
+    <div class="reveal d4 mt-20 flex items-center gap-5 sm:gap-8">
+      <div class="rule flex-1"></div>
+      <div class="flex items-center gap-3 sm:gap-5">
+        <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap">3 demos live</span>
+        <span class="w-1 h-1 rounded-full bg-muted opacity-40 block" aria-hidden="true"></span>
+        <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap">Snabb leverans</span>
+        <span class="w-1 h-1 rounded-full bg-muted opacity-40 block hidden sm:block" aria-hidden="true"></span>
+        <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap hidden sm:block">Fast pris</span>
+      </div>
+      <div class="rule flex-1"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================================================
+     PROBLEM
+==================================================== -->
+<section id="problem" class="py-24 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-12">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Känner du igen dig?</p>
+      <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+        Samma problem — varje vecka.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+      <!-- Card: repeat questions -->
+      <div class="reveal d1 card bg-white rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center mb-6">
+          <!-- refresh-cw -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+               fill="none" stroke="#C77A4A" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M8 16H3v5"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-lg mb-2">Samma frågor — varje dag</h3>
+        <p class="text-muted text-[0.875rem] leading-relaxed">Öppettider, priser, tjänster — om och om igen.</p>
+      </div>
+
+      <!-- Card: missed customers -->
+      <div class="reveal d2 card bg-white rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center mb-6">
+          <!-- moon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+               fill="none" stroke="#C77A4A" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-lg mb-2">Missade kunder efter stängning</h3>
+        <p class="text-muted text-[0.875rem] leading-relaxed">Mejl och samtal som aldrig får svar.</p>
+      </div>
+
+      <!-- Card: manual work -->
+      <div class="reveal d3 card bg-white rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center mb-6">
+          <!-- clock -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+               fill="none" stroke="#C77A4A" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-lg mb-2">Manuellt arbete som äter tid</h3>
+        <p class="text-muted text-[0.875rem] leading-relaxed">Mejl, formulär, sammanställningar.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     TJÄNSTER
+==================================================== -->
+<section id="tjanster" class="py-24 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-12">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Vad jag bygger</p>
+      <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+        Fyra sätt att frigöra tid.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+      <!-- Kunskapsbot -->
+      <div class="reveal d1 card bg-white rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
+          <!-- book-open -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+               fill="none" stroke="#2D5F4E" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-2.5">Kunskapsbot</h3>
+        <p class="text-muted text-sm leading-relaxed mb-4">
+          Chatbot tränad på dina dokument: meny, FAQ, manualer, prislistor. Svarar på det dina kunder faktiskt frågar om.
+        </p>
+        <p class="text-xs text-muted">
+          Bäst för: <span class="text-forest-dark font-medium">restauranger, kliniker, gym, bygg, fastighet</span>
+        </p>
+      </div>
+
+      <!-- Svarbot -->
+      <div class="reveal d2 card bg-white rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
+          <!-- message-circle -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+               fill="none" stroke="#2D5F4E" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-2.5">Svarbot</h3>
+        <p class="text-muted text-sm leading-relaxed mb-4">
+          Hanterar repetitiva kundfrågor automatiskt, dygnet runt — utan personal.
+        </p>
+        <p class="text-xs text-muted">
+          Bäst för: <span class="text-forest-dark font-medium">alla med återkommande mejl, samtal eller chatt</span>
+        </p>
+      </div>
+
+      <!-- AI-automation -->
+      <div class="reveal d3 card bg-white rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
+          <!-- zap -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+               fill="none" stroke="#2D5F4E" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-2.5">AI-automation</h3>
+        <p class="text-muted text-sm leading-relaxed mb-4">
+          Klassificerar mejl, sammanfattar dokument, drar ut data, kopplar verktyg.
+        </p>
+        <p class="text-xs text-muted">
+          Bäst för: <span class="text-forest-dark font-medium">kontor som drunknar i admin</span>
+        </p>
+      </div>
+
+      <!-- Webbappar -->
+      <div class="reveal d4 card bg-white rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
+          <!-- monitor -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+               fill="none" stroke="#2D5F4E" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="20" height="14" x="2" y="3" rx="2"/>
+            <line x1="8" x2="16" y1="21" y2="21"/>
+            <line x1="12" x2="12" y1="17" y2="21"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-2.5">Webbappar</h3>
+        <p class="text-muted text-sm leading-relaxed mb-4">
+          Skräddarsydda webbverktyg som ersätter Excel-arken och de manuella rutinerna.
+        </p>
+        <p class="text-xs text-muted">
+          Bäst för: <span class="text-forest-dark font-medium">företag med interna processer som fastnat i kalkylblad</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     DEMOS
+==================================================== -->
+<section id="demos" class="py-24 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-12">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Verkliga projekt</p>
+      <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+        Se hur det ser ut på riktigt.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+
+      <!-- FriluftsByn -->
+      <div class="reveal d1 card card-link bg-white rounded-2xl overflow-hidden border border-slate-100/80">
+        <div class="demo-header" style="background: linear-gradient(140deg, #2D5F4E 0%, #4A8C72 55%, #A8C8B8 100%);">
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <span class="font-display font-semibold italic text-white text-xl leading-tight"
+                  style="text-shadow: 0 1px 6px rgba(0,0,0,0.28);">FriluftsByn</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[0.7rem] text-terracotta font-semibold tracking-[0.08em] uppercase mb-2">Naturupplevelse · Höga Kusten</p>
+          <p class="text-muted text-sm leading-relaxed mb-5">
+            Chatbot som svarar om aktiviteter, evenemang och plats — dygnet runt.
+          </p>
+          <a href="https://friluftsbyn-chatbot.onrender.com" target="_blank" rel="noopener noreferrer"
+             class="btn-ghost text-xs py-2 px-4">
+            Prova chatbot
+            <!-- arrow-up-right -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- LS Bygg -->
+      <div class="reveal d2 card card-link bg-white rounded-2xl overflow-hidden border border-slate-100/80">
+        <div class="demo-header" style="background: linear-gradient(140deg, #C77A4A 0%, #D49468 55%, #EDD5BA 100%);">
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <span class="font-display font-semibold italic text-white text-xl leading-tight"
+                  style="text-shadow: 0 1px 6px rgba(0,0,0,0.28);">LS Bygg &amp; Snickeri</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[0.7rem] text-terracotta font-semibold tracking-[0.08em] uppercase mb-2">Byggfirma · Piteå</p>
+          <p class="text-muted text-sm leading-relaxed mb-5">
+            "Lars" — chatbot om tjänster, ROT-avdrag och priser.
+          </p>
+          <a href="https://ls-bygg-snickeri.onrender.com" target="_blank" rel="noopener noreferrer"
+             class="btn-ghost text-xs py-2 px-4">
+            Prova chatbot
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- The Unit -->
+      <div class="reveal d3 card card-link bg-white rounded-2xl overflow-hidden border border-slate-100/80">
+        <div class="demo-header" style="background: linear-gradient(140deg, #1A3D31 0%, #2D5F4E 55%, #5C6660 100%);">
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <span class="font-display font-semibold italic text-white text-xl leading-tight"
+                  style="text-shadow: 0 1px 6px rgba(0,0,0,0.28);">The Unit</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[0.7rem] text-terracotta font-semibold tracking-[0.08em] uppercase mb-2">Gym &amp; kampsport · Luleå</p>
+          <p class="text-muted text-sm leading-relaxed mb-5">
+            Chatbot om klasser, medlemskap och schema.
+          </p>
+          <a href="https://the-unit-chatbot.onrender.com" target="_blank" rel="noopener noreferrer"
+             class="btn-ghost text-xs py-2 px-4">
+            Prova chatbot
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     HUR DET FUNKAR
+==================================================== -->
+<section id="hur-det-funkar" class="py-24 px-5 sm:px-8 bg-white">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-14">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Processen</p>
+      <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+        Tre steg från samtal till lösning.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+
+      <!-- Step 1 -->
+      <div class="reveal d1">
+        <div class="step-num mb-1" aria-hidden="true">01</div>
+        <div class="w-9 h-9 rounded-full bg-forest/10 flex items-center justify-center mb-5">
+          <!-- calendar -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="#2D5F4E" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+            <line x1="16" x2="16" y1="2" y2="6"/>
+            <line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="3" x2="21" y1="10" y2="10"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-3">Boka ett samtal</h3>
+        <p class="text-muted text-sm leading-relaxed">
+          20 min, gratis. Vi pratar om ditt företag och vad som tar tid idag.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="reveal d2">
+        <div class="step-num mb-1" aria-hidden="true">02</div>
+        <div class="w-9 h-9 rounded-full bg-forest/10 flex items-center justify-center mb-5">
+          <!-- monitor -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="#2D5F4E" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="20" height="14" x="2" y="3" rx="2"/>
+            <line x1="8" x2="16" y1="21" y2="21"/>
+            <line x1="12" x2="12" y1="17" y2="21"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-3">Du får en demo</h3>
+        <p class="text-muted text-sm leading-relaxed">
+          Jag bygger en AI-assistent på din egen verksamhet så du ser hur det fungerar — innan du betalar.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="reveal d3">
+        <div class="step-num mb-1" aria-hidden="true">03</div>
+        <div class="w-9 h-9 rounded-full bg-forest/10 flex items-center justify-center mb-5">
+          <!-- wrench -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="#2D5F4E" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-3">Leverans &amp; överlämning</h3>
+        <p class="text-muted text-sm leading-relaxed">
+          Funkar det? Va Bra! Inte? Då sitter vi och pratar och kommer till resultat du är nöjd med. Sedan sätter jag upp lösningen, visar hur du hanterar den, klart.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     OM MIG
+==================================================== -->
+<section id="om-mig" class="py-24 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-6">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold">Om mig</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <!-- Left: editorial quote -->
+      <div class="reveal">
+        <div class="relative pl-1">
+          <span class="font-display text-[7rem] leading-none text-forest/10 select-none absolute -top-4 -left-3"
+                aria-hidden="true">"</span>
+          <blockquote class="font-display font-semibold text-forest-dark italic mt-10 leading-[1.22] tracking-[-0.015em]"
+                      style="font-size: clamp(1.5rem, 2.8vw, 2.125rem);">
+            Du säger vad som tar tid. Jag bygger det som löser ditt problem.
+          </blockquote>
+          <div class="mt-8 h-px w-24 bg-gradient-to-r from-terracotta/60 to-transparent"></div>
+        </div>
+      </div>
+
+      <!-- Right: bio -->
+      <div class="reveal d2 space-y-5 text-muted leading-[1.7]" style="font-size: 1.0625rem;">
+        <p>
+          Jag heter Yahya Shihabe och bor i Piteå. Jag bygger AI-verktyg för
+          småföretag i Norrbotten. Chatbottar som svarar på kundfrågor när du
+          sover, automatiseringar som sköter bokningar och mail, och webbappar
+          som ersätter Excel-arken du tröttnat på.
+        </p>
+        <p>
+          Jag jobbar ensam. Du pratar direkt med den som bygger. Inga säljare,
+          inga mellanhänder, inga möten som kunde varit ett mail.
+        </p>
+        <p class="text-forest-dark font-medium">
+          Du säger vad som tar tid. Jag bygger det som löser ditt problem.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     FINAL CTA
+==================================================== -->
+<section id="kontakt" class="py-28 px-5 sm:px-8"
+         style="background: linear-gradient(135deg, #2D5F4E 0%, #1A3D31 100%);">
+  <div class="max-w-2xl mx-auto text-center">
+
+    <div class="reveal mb-4">
+      <span class="text-[0.7rem] text-white/40 uppercase tracking-[0.14em] font-medium">Nästa steg</span>
+    </div>
+
+    <h2 class="reveal d1 font-display font-semibold text-white leading-tight tracking-[-0.02em] mb-6"
+        style="font-size: clamp(2rem, 4.5vw, 3rem);">
+      Boka ett samtal —<br />
+      <em style="font-style:italic; color: #E8A87C;">gratis och utan krav.</em>
+    </h2>
+
+    <p class="reveal d2 text-white/65 leading-relaxed mb-10 mx-auto"
+       style="font-size: 1.0625rem; max-width: 430px; line-height: 1.65;">
+      20 minuter. Vi pratar om vad som tar tid i ditt företag och om jag kan bygga något som hjälper. Du betalar inget förrän du sett demon.
+    </p>
+
+    <div class="reveal d3">
+      <a id="final-cta" href="#BOOKING" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 bg-white text-forest-dark font-semibold
+                px-9 py-4 rounded-full text-base cursor-pointer
+                hover:bg-cream transition-colors duration-200"
+         style="font-family: 'Inter', sans-serif;">
+        Boka samtal
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2.5"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ===================================================
+     FOOTER
+==================================================== -->
+<footer class="py-7 px-5 sm:px-8 border-t border-slate-100">
+  <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-3">
+    <span class="text-xs text-muted">© 2026 Yahya Shihabe</span>
+    <div class="flex items-center gap-5 text-xs text-muted flex-wrap">
+      <a href="mailto:yahya.shehabi1@gmail.com"
+         class="hover:text-forest-dark transition-colors duration-200">
+        yahya.shehabi1@gmail.com
+      </a>
+      <span class="text-slate-200" aria-hidden="true">·</span>
+      <a href="tel:+46704540794"
+         class="hover:text-forest-dark transition-colors duration-200">
+        070 454 07 94
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================================================
+     SCRIPTS
+==================================================== -->
+<script>
+  // ── Booking URL ─────────────────────────────────────────
+  // Change THIS one string when you have your Google Calendar URL:
+  const BOOKING_URL = 'https://calendar.app.google/REPLACE_ME';
+
+  document.querySelectorAll('[href="#BOOKING"]').forEach(el => {
+    el.href = BOOKING_URL;
+  });
+
+  // ── Scroll reveal ────────────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Nav scroll state ─────────────────────────────────────
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 16);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
