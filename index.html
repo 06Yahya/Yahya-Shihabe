@@ -741,14 +741,6 @@
      SCRIPTS
 ==================================================== -->
 <script>
-  // ── Booking URL ─────────────────────────────────────────
-  // Change THIS one string when you have your Google Calendar URL:
-  const BOOKING_URL = 'https://calendar.app.google/REPLACE_ME';
-
-  document.querySelectorAll('[href="#BOOKING"]').forEach(el => {
-    el.href = BOOKING_URL;
-  });
-
   // ── Scroll reveal ────────────────────────────────────────
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
