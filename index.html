@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Yahya Shihabe — AI för småföretag</title>
-  <meta name="description" content="AI-chatbottar, webbappar och automationer byggda för svenska småföretag. Lokal utvecklare, snabb leverans, fast pris." />
+  <title>Yahya Shihabe — AI engineer & agency founder</title>
+  <meta name="description" content="I build production AI agents for local businesses and prove them with public repos, tests, and live demos. Full-stack TypeScript on Cloudflare." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Yahya Shihabe — AI för småföretag" />
-  <meta property="og:description" content="AI-chatbottar, webbappar och automationer byggda för svenska småföretag. Lokal utvecklare, snabb leverans, fast pris." />
+  <meta property="og:title" content="Yahya Shihabe — AI engineer & agency founder" />
+  <meta property="og:description" content="Production AI agents, tested and deployed. Full-stack TypeScript on Cloudflare." />
   <meta property="og:image" content="/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="sv_SE" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Yahya Shihabe — AI för småföretag" />
-  <meta name="twitter:description" content="AI-chatbottar, webbappar och automationer byggda för svenska småföretag. Lokal utvecklare, snabb leverans, fast pris." />
+  <meta name="twitter:title" content="Yahya Shihabe — AI engineer & agency founder" />
+  <meta name="twitter:description" content="Production AI agents, tested and deployed. Full-stack TypeScript on Cloudflare." />
   <meta name="twitter:image" content="/og.png" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -119,6 +118,8 @@
     }
     .btn-ghost:hover { background: #2D5F4E; color: #fff; }
 
+    .btn-ghost-sm { padding: 10px 18px; font-size: 0.8rem; }
+
     /* Card lift */
     .card {
       transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -133,6 +134,13 @@
     /* Demo card gradient header */
     .demo-header {
       height: 136px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Project card header */
+    .project-header {
+      height: 200px;
       position: relative;
       overflow: hidden;
     }
@@ -183,6 +191,101 @@
       opacity: 0.035;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
     }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      border: 1.5px solid rgba(45,95,78,0.25);
+      border-radius: 9999px;
+      overflow: hidden;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lang-toggle span {
+      padding: 3px 8px;
+      transition: all 0.2s ease;
+    }
+    .lang-toggle span.active {
+      background: #2D5F4E;
+      color: #fff;
+    }
+    .lang-toggle span:not(.active) {
+      color: #5C6660;
+    }
+    .lang-toggle span:not(.active):hover {
+      color: #1F2A24;
+    }
+
+    /* Language transition */
+    .lang-section {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .lang-section.hidden-lang {
+      display: none;
+    }
+    .lang-section.fade-out {
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+    }
+
+    /* Stack badges */
+    .stack-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      font-size: 0.68rem;
+      font-weight: 500;
+      border-radius: 9999px;
+      background: rgba(45,95,78,0.08);
+      color: #1F2A24;
+    }
+
+    /* Proof stat */
+    .proof-stat {
+      text-align: center;
+    }
+    .proof-stat .number {
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2D5F4E;
+      line-height: 1.1;
+    }
+    .proof-stat .label {
+      font-size: 0.75rem;
+      color: #5C6660;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    /* External link arrow */
+    .ext-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #2D5F4E;
+      text-decoration: none;
+      transition: gap 0.2s ease;
+    }
+    .ext-link:hover { gap: 7px; }
+    .ext-link svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    /* Mobile sticky */
+    .mobile-sticky {
+      transition: opacity 0.3s ease;
+    }
   </style>
 </head>
 <body class="bg-cream font-sans text-forest-dark antialiased">
@@ -190,14 +293,14 @@
 <!-- Grain overlay -->
 <div class="grain" aria-hidden="true"></div>
 
-<!-- ===================================================
+<!-- ============================================================
      NAV
-==================================================== -->
+============================================================ -->
 <header id="site-nav" class="fixed top-0 left-0 right-0 z-50">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
 
     <!-- Logo -->
-    <a href="#" aria-label="Yahya Shihabe — tillbaka till toppen" class="flex items-center gap-2.5 no-underline">
+    <a href="#" aria-label="Yahya Shihabe — home" class="flex items-center gap-2.5 no-underline">
       <div class="ys-mark" aria-hidden="true">
         <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle"
@@ -209,93 +312,609 @@
       </span>
     </a>
 
-    <!-- Desktop nav links -->
-    <nav class="hidden md:flex items-center gap-7 text-base font-medium text-muted" aria-label="Sidnavigering">
-      <a href="#tjanster" class="hover:text-forest-dark transition-colors duration-200">Tjänster</a>
-      <a href="#demos"    class="hover:text-forest-dark transition-colors duration-200">Demos</a>
-      <a href="#om-mig"   class="hover:text-forest-dark transition-colors duration-200">Om mig</a>
-    </nav>
+    <!-- Desktop nav + toggle -->
+    <div class="hidden md:flex items-center gap-6">
+      <!-- EN nav -->
+      <nav class="flex items-center gap-7 text-base font-medium text-muted" data-i18n-group="nav-en" aria-label="Navigation">
+        <a href="#projects" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.projects">Projects</a>
+        <a href="#stack" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.stack">Stack</a>
+        <a href="#client-work" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.clientWork">Client Work</a>
+        <a href="#about" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.about">About</a>
+        <a href="#contact" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.contact">Contact</a>
+      </nav>
 
-    <!-- CTA -->
-    <a id="nav-cta" href="#boka"
-       class="btn-cta btn-cta-sm">
-      Boka samtal
-    </a>
+      <!-- SV nav -->
+      <nav class="flex items-center gap-7 text-base font-medium text-muted" data-i18n-group="nav-sv" aria-label="Navigering" style="display:none;">
+        <a href="#tjanster" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.services">Tjänster</a>
+        <a href="#demos" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.demos">Demos</a>
+        <a href="#portfolio-sv" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="#om-mig" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.aboutSv">Om mig</a>
+        <a href="#kontakt" class="hover:text-forest-dark transition-colors duration-200" data-i18n="nav.contactSv">Kontakt</a>
+      </nav>
+
+      <!-- Language toggle -->
+      <div class="lang-toggle" role="radiogroup" aria-label="Språk / Language">
+        <span role="radio" aria-checked="true" data-lang="en" class="active">EN</span>
+        <span role="radio" aria-checked="false" data-lang="sv">SV</span>
+      </div>
+
+      <!-- CTA -->
+      <a id="nav-cta" href="#contact"
+         class="btn-cta btn-cta-sm" data-i18n="nav.cta">
+        Book a call
+      </a>
+    </div>
+
+    <!-- Mobile: toggle + CTA -->
+    <div class="flex md:hidden items-center gap-3">
+      <div class="lang-toggle" role="radiogroup" aria-label="Språk / Language">
+        <span role="radio" aria-checked="true" data-lang="en" class="active">EN</span>
+        <span role="radio" aria-checked="false" data-lang="sv">SV</span>
+      </div>
+      <a href="#contact"
+         class="btn-cta btn-cta-sm" data-i18n="nav.ctaMobile">
+        Book
+      </a>
+    </div>
   </div>
 </header>
 
 <main>
 
-<!-- ===================================================
-     HERO
-==================================================== -->
-<section id="hero" class="min-h-screen flex flex-col justify-center px-5 sm:px-8 pt-28 pb-16">
-  <div class="max-w-6xl mx-auto w-full">
+<!-- ============================================================
+     EN — HERO
+============================================================ -->
+<section id="hero-en" class="lang-section" data-lang="en">
+  <div class="min-h-screen flex flex-col justify-center px-5 sm:px-8 pt-28 pb-16">
+    <div class="max-w-6xl mx-auto w-full">
 
-    <!-- Eyebrow -->
-    <div class="reveal flex items-center gap-3 mb-9">
-      <span class="block h-px w-10 bg-terracotta" aria-hidden="true"></span>
-      <span class="text-terracotta text-xs font-medium tracking-[0.14em] uppercase">AI-lösningar · Piteå · Norrbotten</span>
-    </div>
-
-    <!-- Heading -->
-    <h1 class="reveal d1 font-display font-semibold text-forest-dark leading-[1.06] tracking-[-0.02em] mb-8"
-        style="font-size: clamp(2.6rem, 6.5vw, 5.25rem); max-width: 860px;">
-      AI som sparar
-      <em style="font-style:italic; color:#C77A4A;">tid och pengar</em><br class="hidden sm:block" />
-      för ditt företag.
-    </h1>
-
-    <!-- Sub -->
-    <p class="reveal d2 text-muted leading-relaxed mb-11"
-       style="font-size: clamp(1.0625rem, 1.9vw, 1.25rem); max-width: 530px; line-height: 1.65;">
-      AI-assistenter och automationer som svarar dina kunder dygnet runt — levererade på cirka 14 dagar. Demo först, betalar när du är nöjd.
-    </p>
-
-    <!-- CTAs -->
-    <div class="reveal d3 flex items-center gap-5 flex-wrap">
-      <a id="hero-cta" href="#boka"
-         class="btn-cta btn-cta-lg">
-        Boka samtal
-        <!-- chevron-right -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="m9 18 6-6-6-6"/>
-        </svg>
-      </a>
-      <a href="#demos"
-         class="text-sm font-medium text-muted hover:text-forest-dark transition-colors duration-200 flex items-center gap-1.5">
-        Se demos
-        <!-- chevron-down -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="m6 9 6 6 6-6"/>
-        </svg>
-      </a>
-    </div>
-
-    <!-- Decorative meta row -->
-    <div class="reveal d4 mt-20 flex items-center gap-5 sm:gap-8">
-      <div class="rule flex-1"></div>
-      <div class="flex items-center gap-3 sm:gap-5">
-        <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap">Demo först</span>
-        <span class="w-1 h-1 rounded-full bg-muted opacity-40 block" aria-hidden="true"></span>
-        <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap">Betala sen</span>
-        <span class="w-1 h-1 rounded-full bg-muted opacity-40 block hidden sm:block" aria-hidden="true"></span>
-        <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap hidden sm:block">Inga bindningstider</span>
+      <div class="reveal flex items-center gap-3 mb-9">
+        <span class="block h-px w-10 bg-terracotta" aria-hidden="true"></span>
+        <span class="text-terracotta text-xs font-medium tracking-[0.14em] uppercase">Full-stack AI agency · Piteå, Sweden</span>
       </div>
-      <div class="rule flex-1"></div>
+
+      <h1 class="reveal d1 font-display font-semibold text-forest-dark leading-[1.06] tracking-[-0.02em] mb-8"
+          style="font-size: clamp(2.6rem, 6.5vw, 5.25rem); max-width: 920px;">
+        AI systems that turn <br class="hidden sm:block" />
+        <em style="font-style:italic; color:#C77A4A;">missed calls</em> into booked jobs
+        <br class="hidden sm:block" />and research into <em style="font-style:italic; color:#C77A4A;">30-second decisions</em>.
+      </h1>
+
+      <p class="reveal d2 text-muted leading-relaxed mb-11"
+         style="font-size: clamp(1.0625rem, 1.9vw, 1.25rem); max-width: 580px; line-height: 1.65;">
+        I build production AI agents for local service businesses and prove them
+        with public repos, tests, live demos, and clear documentation.
+        Every project is deployed and inspectable — no vapourware.
+      </p>
+
+      <div class="reveal d3 flex items-center gap-5 flex-wrap">
+        <a href="#projects" class="btn-cta btn-cta-lg">
+          See projects
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </a>
+        <a href="#about"
+           class="text-sm font-medium text-muted hover:text-forest-dark transition-colors duration-200 flex items-center gap-1.5">
+          About me
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="reveal d4 mt-20 flex items-center gap-5 sm:gap-8">
+        <div class="rule flex-1"></div>
+        <div class="flex items-center gap-3 sm:gap-5">
+          <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap">Live deployed</span>
+          <span class="w-1 h-1 rounded-full bg-muted opacity-40 block" aria-hidden="true"></span>
+          <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap">Open source</span>
+          <span class="w-1 h-1 rounded-full bg-muted opacity-40 block hidden sm:block" aria-hidden="true"></span>
+          <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap hidden sm:block">Inspectable by employers</span>
+        </div>
+        <div class="rule flex-1"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EN — SELECTED PROJECTS
+============================================================ -->
+<section id="projects" class="lang-section py-24 px-5 sm:px-8" data-lang="en">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-12">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Selected projects</p>
+      <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+        Public proof, not promises.
+      </h2>
+      <p class="text-muted mt-3" style="max-width:560px;">
+        Each project has a live demo, a public GitHub repo, screenshots, tests, and
+        an architecture walkthrough. Inspect end to end.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Project 1: AI Receptionist -->
+      <div class="reveal d1 card bg-white rounded-2xl overflow-hidden border border-slate-100/80">
+        <div class="project-header">
+          <a href="https://ai-receptionist-demo.yahya-shehabi01.workers.dev" target="_blank" rel="noopener noreferrer" class="block h-full">
+            <img src="https://raw.githubusercontent.com/06Yahya/ai-receptionist-demo/main/docs/screenshots/live-demo-desktop.png"
+                 alt="AI receptionist demo screenshot"
+                 class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" />
+            <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%, transparent 100%);"></div>
+            <div class="absolute top-3 right-3">
+              <span class="bg-green-600 text-white text-[0.6rem] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Live</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">AI Receptionist & Lead Capture</h3>
+          <p class="text-muted text-sm leading-relaxed mb-3">
+            A deployed AI receptionist that turns website visitors into structured leads.
+            Visitor chat widget, grounded business answers, D1 persistence, and an owner dashboard.
+          </p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="stack-badge">React 19</span>
+            <span class="stack-badge">TypeScript</span>
+            <span class="stack-badge">Cloudflare Workers</span>
+            <span class="stack-badge">D1 SQLite</span>
+            <span class="stack-badge">Workers AI</span>
+            <span class="stack-badge">Vitest</span>
+          </div>
+          <p class="text-xs text-muted mb-4 leading-relaxed">
+            <strong class="text-forest-dark">What this proves:</strong> Full-stack TypeScript app,
+            practical AI-agent workflow with deterministic fallback, configurable business context,
+            lead extraction without LLM dependency, test suite, and production deployment.
+          </p>
+          <div class="flex items-center gap-4">
+            <a href="https://ai-receptionist-demo.yahya-shehabi01.workers.dev" target="_blank" rel="noopener noreferrer" class="ext-link">
+              Live demo
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+            <a href="https://github.com/06Yahya/ai-receptionist-demo" target="_blank" rel="noopener noreferrer" class="ext-link">
+              GitHub
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Agent Workflow Playground -->
+      <div class="reveal d2 card bg-white rounded-2xl overflow-hidden border border-slate-100/80">
+        <div class="project-header">
+          <a href="https://agent-workflow-playground.yahya-shehabi01.workers.dev" target="_blank" rel="noopener noreferrer" class="block h-full">
+            <img src="https://raw.githubusercontent.com/06Yahya/agent-workflow-playground/main/docs/screenshots/landing-page.png"
+                 alt="Agent workflow playground screenshot"
+                 class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" />
+            <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%, transparent 100%);"></div>
+            <div class="absolute top-3 right-3">
+              <span class="bg-green-600 text-white text-[0.6rem] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Live</span>
+            </div>
+          </a>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">Agent Workflow Playground</h3>
+          <p class="text-muted text-sm leading-relaxed mb-3">
+            Three runnable agent workflows for sales and research: prospect audit,
+            CRM enrichment, and follow-up drafting. Not a chatbot UI — real operational agents.
+          </p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="stack-badge">TypeScript</span>
+            <span class="stack-badge">Cloudflare Workers</span>
+            <span class="stack-badge">Workers AI</span>
+            <span class="stack-badge">Model fallback chain</span>
+            <span class="stack-badge">Structured outputs</span>
+          </div>
+          <p class="text-xs text-muted mb-4 leading-relaxed">
+            <strong class="text-forest-dark">What this proves:</strong> Agent orchestration beyond chat,
+            tool use and evidence gathering, structured outputs with model fallback handling,
+            API contracts documented in README, traceable workflow envelope, and live deployment.
+          </p>
+          <div class="flex items-center gap-4">
+            <a href="https://agent-workflow-playground.yahya-shehabi01.workers.dev" target="_blank" rel="noopener noreferrer" class="ext-link">
+              Live demo
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+            <a href="https://github.com/06Yahya/agent-workflow-playground" target="_blank" rel="noopener noreferrer" class="ext-link">
+              GitHub
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reveal mt-10 text-center">
+      <p class="text-sm text-muted mb-3">Also building Swedish SMB solutions →</p>
+      <a href="#client-work" class="ext-link text-base">
+        See client work
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
     </div>
 
   </div>
 </section>
 
-<!-- ===================================================
-     PROBLEM
-==================================================== -->
-<section id="problem" class="py-24 px-5 sm:px-8">
+<!-- ============================================================
+     EN — WHAT I BUILD
+============================================================ -->
+<section class="lang-section py-24 px-5 sm:px-8 bg-white" data-lang="en">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-12">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Capabilities</p>
+      <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+        What I build.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+      <div class="reveal d1 card bg-cream rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2D5F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">Knowledge agents</h3>
+        <p class="text-muted text-sm leading-relaxed">AI agents that answer customer questions from your docs, FAQs, and manuals — grounded, not hallucinating.</p>
+      </div>
+
+      <div class="reveal d2 card bg-cream rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2D5F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">Conversational AI</h3>
+        <p class="text-muted text-sm leading-relaxed">Chatbots that handle repetitive support questions, capture leads, and escalate when needed — 24/7.</p>
+      </div>
+
+      <div class="reveal d3 card bg-cream rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2D5F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">AI automation</h3>
+        <p class="text-muted text-sm leading-relaxed">Classify emails, summarise documents, extract data, connect tools — replace hours of admin per week.</p>
+      </div>
+
+      <div class="reveal d4 card bg-cream rounded-2xl p-7 border border-slate-100/80">
+        <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2D5F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">Web apps</h3>
+        <p class="text-muted text-sm leading-relaxed">Custom web tools that replace spreadsheets, manual processes, and outdated internal systems.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EN — STACK
+============================================================ -->
+<section id="stack" class="lang-section py-24 px-5 sm:px-8" data-lang="en">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-12">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Technology</p>
+      <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+        Modern stack. Deployed on Cloudflare.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+      <div class="reveal d1 card bg-white rounded-xl p-5 text-center border border-slate-100/80">
+        <div class="font-display font-semibold text-forest-dark text-sm mb-1">Cloudflare Workers</div>
+        <div class="text-[0.6rem] text-muted uppercase tracking-wider">Runtime</div>
+      </div>
+      <div class="reveal d2 card bg-white rounded-xl p-5 text-center border border-slate-100/80">
+        <div class="font-display font-semibold text-forest-dark text-sm mb-1">D1</div>
+        <div class="text-[0.6rem] text-muted uppercase tracking-wider">Database</div>
+      </div>
+      <div class="reveal d3 card bg-white rounded-xl p-5 text-center border border-slate-100/80">
+        <div class="font-display font-semibold text-forest-dark text-sm mb-1">Workers AI</div>
+        <div class="text-[0.6rem] text-muted uppercase tracking-wider">AI layer</div>
+      </div>
+      <div class="reveal d4 card bg-white rounded-xl p-5 text-center border border-slate-100/80">
+        <div class="font-display font-semibold text-forest-dark text-sm mb-1">React 19</div>
+        <div class="text-[0.6rem] text-muted uppercase tracking-wider">Frontend</div>
+      </div>
+      <div class="reveal d1 card bg-white rounded-xl p-5 text-center border border-slate-100/80">
+        <div class="font-display font-semibold text-forest-dark text-sm mb-1">TypeScript</div>
+        <div class="text-[0.6rem] text-muted uppercase tracking-wider">Language</div>
+      </div>
+      <div class="reveal d2 card bg-white rounded-xl p-5 text-center border border-slate-100/80">
+        <div class="font-display font-semibold text-forest-dark text-sm mb-1">GitHub Actions</div>
+        <div class="text-[0.6rem] text-muted uppercase tracking-wider">CI/CD</div>
+      </div>
+    </div>
+
+    <div class="reveal mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-muted">
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span> Tailwind CSS
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span> Vitest
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span> Node.js
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span> Python
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span> Cloudflare Pages
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span> Wrangler
+      </span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     EN — CLIENT WORK (SMB Demos)
+============================================================ -->
+<section id="client-work" class="lang-section py-24 px-5 sm:px-8 bg-white" data-lang="en">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-12">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Client work</p>
+      <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+        Deployed for Swedish SMBs.
+      </h2>
+      <p class="text-muted mt-3" style="max-width:560px;">
+        AI chatbots deployed for local businesses in Norrbotten. These are production
+        demos on Render — conversation-based, trained on real business context.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+
+      <!-- FriluftsByn -->
+      <div class="reveal d1 card card-link bg-cream rounded-2xl overflow-hidden border border-slate-100/80">
+        <div class="demo-header">
+          <img src="/assets/demo-friluftsbyn.png" alt="FriluftsByn chatbot demo"
+               class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" width="1280" height="800" />
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <span class="font-display font-semibold italic text-white text-xl leading-tight"
+                  style="text-shadow: 0 1px 6px rgba(0,0,0,0.28);">FriluftsByn</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[0.7rem] text-terracotta font-semibold tracking-[0.08em] uppercase mb-2">Nature experience · Höga Kusten</p>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">24/7 answers</span>
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">RAG-based</span>
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">Swedish</span>
+          </div>
+          <p class="text-muted text-sm leading-relaxed mb-5">
+            AI chatbot answering questions about activities, events, and locations 24/7.
+          </p>
+          <a href="https://friluftsbyn-chatbot.onrender.com" target="_blank" rel="noopener noreferrer"
+             class="btn-ghost text-xs py-2 px-4">
+            Try the chatbot
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- LS Bygg -->
+      <div class="reveal d2 card card-link bg-cream rounded-2xl overflow-hidden border border-slate-100/80">
+        <div class="demo-header">
+          <img src="/assets/demo-lsbygg.png" alt="LS Bygg & Snickeri chatbot demo"
+               class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" width="1280" height="800" />
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <span class="font-display font-semibold italic text-white text-xl leading-tight"
+                  style="text-shadow: 0 1px 6px rgba(0,0,0,0.28);">LS Bygg & Snickeri</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[0.7rem] text-terracotta font-semibold tracking-[0.08em] uppercase mb-2">Construction · Piteå</p>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">24/7 answers</span>
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">ROT deduction</span>
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">Swedish</span>
+          </div>
+          <p class="text-muted text-sm leading-relaxed mb-5">
+            "Lars" — chatbot about services, ROT tax deductions, and pricing.
+          </p>
+          <a href="https://ls-bygg-snickeri.onrender.com" target="_blank" rel="noopener noreferrer"
+             class="btn-ghost text-xs py-2 px-4">
+            Try the chatbot
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- The Unit -->
+      <div class="reveal d3 card card-link bg-cream rounded-2xl overflow-hidden border border-slate-100/80">
+        <div class="demo-header">
+          <img src="/assets/demo-theunit.png" alt="The Unit chatbot demo"
+               class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" width="1280" height="800" />
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <span class="font-display font-semibold italic text-white text-xl leading-tight"
+                  style="text-shadow: 0 1px 6px rgba(0,0,0,0.28);">The Unit</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[0.7rem] text-terracotta font-semibold tracking-[0.08em] uppercase mb-2">Gym & martial arts · Luleå</p>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">24/7 answers</span>
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">Schedule & memberships</span>
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">Swedish</span>
+          </div>
+          <p class="text-muted text-sm leading-relaxed mb-5">
+            Chatbot answering questions about classes, memberships, and schedules.
+          </p>
+          <a href="https://the-unit-chatbot.onrender.com" target="_blank" rel="noopener noreferrer"
+             class="btn-ghost text-xs py-2 px-4">
+            Try the chatbot
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EN — ABOUT
+============================================================ -->
+<section id="about" class="lang-section py-24 px-5 sm:px-8" data-lang="en">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-6">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold">About</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <div class="reveal">
+        <div class="relative pl-1">
+          <span class="font-display text-[7rem] leading-none text-forest/10 select-none absolute -top-4 -left-3"
+                aria-hidden="true">"</span>
+          <blockquote class="font-display font-semibold text-forest-dark italic mt-10 leading-[1.22] tracking-[-0.015em]"
+                      style="font-size: clamp(1.5rem, 2.8vw, 2.125rem);">
+            You tell me what takes time. I build what solves the problem.
+          </blockquote>
+          <div class="mt-8 h-px w-24 bg-gradient-to-r from-terracotta/60 to-transparent"></div>
+        </div>
+      </div>
+
+      <div class="reveal d2 space-y-5 text-muted leading-[1.7]" style="font-size: 1.0625rem;">
+        <p>
+          I'm Yahya Shihabe, based in Piteå, Sweden. I build AI agents and automation
+          for local businesses — chatbots that answer customers while you sleep,
+          automations that handle bookings and emails, and web apps that replace
+          the spreadsheets you're tired of.
+        </p>
+        <p>
+          I work alone. You talk directly to the builder. No salespeople, no
+          middlemen, no meetings that could have been an email.
+        </p>
+        <p class="text-forest-dark font-medium">
+          Every project is deployed, tested, and documented — not because someone
+          asked, but because that's what shipping means.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="reveal mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="proof-stat">
+        <div class="number">3</div>
+        <div class="label">Public repos</div>
+      </div>
+      <div class="proof-stat">
+        <div class="number">5</div>
+        <div class="label">Deployed demos</div>
+      </div>
+      <div class="proof-stat">
+        <div class="number">100%</div>
+        <div class="label">Tested before push</div>
+      </div>
+      <div class="proof-stat">
+        <div class="number">14</div>
+        <div class="label">Day delivery average</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SV — HERO
+============================================================ -->
+<section id="hero-sv" class="lang-section" data-lang="sv" style="display:none;">
+  <div class="min-h-screen flex flex-col justify-center px-5 sm:px-8 pt-28 pb-16">
+    <div class="max-w-6xl mx-auto w-full">
+
+      <div class="reveal flex items-center gap-3 mb-9">
+        <span class="block h-px w-10 bg-terracotta" aria-hidden="true"></span>
+        <span class="text-terracotta text-xs font-medium tracking-[0.14em] uppercase">AI-lösningar · Piteå · Norrbotten</span>
+      </div>
+
+      <h1 class="reveal d1 font-display font-semibold text-forest-dark leading-[1.06] tracking-[-0.02em] mb-8"
+          style="font-size: clamp(2.6rem, 6.5vw, 5.25rem); max-width: 860px;">
+        AI som sparar
+        <em style="font-style:italic; color:#C77A4A;">tid och pengar</em><br class="hidden sm:block" />
+        för ditt företag.
+      </h1>
+
+      <p class="reveal d2 text-muted leading-relaxed mb-11"
+         style="font-size: clamp(1.0625rem, 1.9vw, 1.25rem); max-width: 530px; line-height: 1.65;">
+        AI-assistenter och automationer som svarar dina kunder dygnet runt — levererade på cirka 14 dagar. Demo först, betalar när du är nöjd.
+      </p>
+
+      <div class="reveal d3 flex items-center gap-5 flex-wrap">
+        <a href="#boka" class="btn-cta btn-cta-lg">
+          Boka samtal
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </a>
+        <a href="#demos"
+           class="text-sm font-medium text-muted hover:text-forest-dark transition-colors duration-200 flex items-center gap-1.5">
+          Se demos
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="reveal d4 mt-20 flex items-center gap-5 sm:gap-8">
+        <div class="rule flex-1"></div>
+        <div class="flex items-center gap-3 sm:gap-5">
+          <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap">Demo först</span>
+          <span class="w-1 h-1 rounded-full bg-muted opacity-40 block" aria-hidden="true"></span>
+          <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap">Betala sen</span>
+          <span class="w-1 h-1 rounded-full bg-muted opacity-40 block hidden sm:block" aria-hidden="true"></span>
+          <span class="text-[0.7rem] text-muted font-medium tracking-[0.12em] uppercase whitespace-nowrap hidden sm:block">Inga bindningstider</span>
+        </div>
+        <div class="rule flex-1"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SV — PROBLEM
+============================================================ -->
+<section class="lang-section py-24 px-5 sm:px-8" data-lang="sv" style="display:none;">
   <div class="max-w-6xl mx-auto">
 
     <div class="reveal mb-4">
@@ -312,10 +931,8 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
-      <!-- Card: repeat questions -->
       <div class="reveal d1 card bg-white rounded-2xl p-7 border border-slate-100/80">
         <div class="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center mb-6">
-          <!-- refresh-cw -->
           <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
                fill="none" stroke="#C77A4A" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -329,10 +946,8 @@
         <p class="text-muted text-[0.875rem] leading-relaxed">Öppettider, priser, tjänster — om och om igen.</p>
       </div>
 
-      <!-- Card: missed customers -->
       <div class="reveal d2 card bg-white rounded-2xl p-7 border border-slate-100/80">
         <div class="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center mb-6">
-          <!-- moon -->
           <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
                fill="none" stroke="#C77A4A" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -343,10 +958,8 @@
         <p class="text-muted text-[0.875rem] leading-relaxed">Mejl och samtal som aldrig får svar.</p>
       </div>
 
-      <!-- Card: manual work -->
       <div class="reveal d3 card bg-white rounded-2xl p-7 border border-slate-100/80">
         <div class="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center mb-6">
-          <!-- clock -->
           <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
                fill="none" stroke="#C77A4A" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -362,10 +975,10 @@
   </div>
 </section>
 
-<!-- ===================================================
-     TJÄNSTER
-==================================================== -->
-<section id="tjanster" class="py-24 px-5 sm:px-8">
+<!-- ============================================================
+     SV — TJÄNSTER
+============================================================ -->
+<section id="tjanster" class="lang-section py-24 px-5 sm:px-8" data-lang="sv" style="display:none;">
   <div class="max-w-6xl mx-auto">
 
     <div class="reveal mb-12">
@@ -378,16 +991,9 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
-      <!-- Kunskapsbot -->
       <div class="reveal d1 card bg-white rounded-2xl p-7 border border-slate-100/80">
         <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
-          <!-- book-open -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
-               fill="none" stroke="#2D5F4E" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2D5F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         </div>
         <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">Kunskapsbot</h3>
         <p class="text-forest text-xs font-semibold mb-3">Svarar på det dina kunder faktiskt frågar.</p>
@@ -399,15 +1005,9 @@
         </p>
       </div>
 
-      <!-- Svarbot -->
       <div class="reveal d2 card bg-white rounded-2xl p-7 border border-slate-100/80">
         <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
-          <!-- message-circle -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
-               fill="none" stroke="#2D5F4E" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2D5F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
         </div>
         <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">Svarbot</h3>
         <p class="text-forest text-xs font-semibold mb-3">Hanterar repetitiva frågor — dygnet runt.</p>
@@ -419,15 +1019,9 @@
         </p>
       </div>
 
-      <!-- AI-automation -->
       <div class="reveal d3 card bg-white rounded-2xl p-7 border border-slate-100/80">
         <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
-          <!-- zap -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
-               fill="none" stroke="#2D5F4E" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2D5F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
         <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">AI-automation</h3>
         <p class="text-forest text-xs font-semibold mb-3">Tar bort timmar av admin per vecka.</p>
@@ -439,17 +1033,9 @@
         </p>
       </div>
 
-      <!-- Webbappar -->
       <div class="reveal d4 card bg-white rounded-2xl p-7 border border-slate-100/80">
         <div class="w-10 h-10 rounded-xl bg-forest/10 flex items-center justify-center mb-6">
-          <!-- monitor -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
-               fill="none" stroke="#2D5F4E" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect width="20" height="14" x="2" y="3" rx="2"/>
-            <line x1="8" x2="16" y1="21" y2="21"/>
-            <line x1="12" x2="12" y1="17" y2="21"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2D5F4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
         </div>
         <h3 class="font-display font-semibold text-forest-dark text-xl mb-1">Webbappar</h3>
         <p class="text-forest text-xs font-semibold mb-3">Ersätter Excel-arket som ingen vill äga.</p>
@@ -465,10 +1051,10 @@
   </div>
 </section>
 
-<!-- ===================================================
-     DEMOS
-==================================================== -->
-<section id="demos" class="py-24 px-5 sm:px-8">
+<!-- ============================================================
+     SV — DEMOS
+============================================================ -->
+<section id="demos" class="lang-section py-24 px-5 sm:px-8" data-lang="sv" style="display:none;">
   <div class="max-w-6xl mx-auto">
 
     <div class="reveal mb-12">
@@ -481,7 +1067,6 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
 
-      <!-- FriluftsByn -->
       <div class="reveal d1 card card-link bg-white rounded-2xl overflow-hidden border border-slate-100/80">
         <div class="demo-header">
           <img src="/assets/demo-friluftsbyn.png" alt="FriluftsByn chatbot demo"
@@ -505,7 +1090,6 @@
           <a href="https://friluftsbyn-chatbot.onrender.com" target="_blank" rel="noopener noreferrer"
              class="btn-ghost text-xs py-2 px-4">
             Prova chatbot
-            <!-- arrow-up-right -->
             <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24"
                  fill="none" stroke="currentColor" stroke-width="2.5"
                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -515,15 +1099,14 @@
         </div>
       </div>
 
-      <!-- LS Bygg -->
       <div class="reveal d2 card card-link bg-white rounded-2xl overflow-hidden border border-slate-100/80">
         <div class="demo-header">
-          <img src="/assets/demo-lsbygg.png" alt="LS Bygg &amp; Snickeri chatbot demo"
+          <img src="/assets/demo-lsbygg.png" alt="LS Bygg & Snickeri chatbot demo"
                class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" width="1280" height="800" />
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);"></div>
           <div class="absolute inset-0 flex flex-col justify-end p-5">
             <span class="font-display font-semibold italic text-white text-xl leading-tight"
-                  style="text-shadow: 0 1px 6px rgba(0,0,0,0.28);">LS Bygg &amp; Snickeri</span>
+                  style="text-shadow: 0 1px 6px rgba(0,0,0,0.28);">LS Bygg & Snickeri</span>
           </div>
         </div>
         <div class="p-6">
@@ -548,7 +1131,6 @@
         </div>
       </div>
 
-      <!-- The Unit -->
       <div class="reveal d3 card card-link bg-white rounded-2xl overflow-hidden border border-slate-100/80">
         <div class="demo-header">
           <img src="/assets/demo-theunit.png" alt="The Unit chatbot demo"
@@ -560,10 +1142,10 @@
           </div>
         </div>
         <div class="p-6">
-          <p class="text-[0.7rem] text-terracotta font-semibold tracking-[0.08em] uppercase mb-2">Gym &amp; kampsport · Luleå</p>
+          <p class="text-[0.7rem] text-terracotta font-semibold tracking-[0.08em] uppercase mb-2">Gym & kampsport · Luleå</p>
           <div class="flex flex-wrap gap-1.5 mb-3">
             <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">Svarar 24/7</span>
-            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">Schema &amp; medlemskap</span>
+            <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">Schema & medlemskap</span>
             <span class="bg-forest/10 text-forest-dark text-[0.68rem] font-medium px-2.5 py-1 rounded-full">På svenska</span>
           </div>
           <p class="text-muted text-sm leading-relaxed mb-5">
@@ -585,10 +1167,74 @@
   </div>
 </section>
 
-<!-- ===================================================
-     HUR DET FUNKAR
-==================================================== -->
-<section id="hur-det-funkar" class="py-24 px-5 sm:px-8 bg-white">
+<!-- ============================================================
+     SV — PORTFOLIO TEASER (only in SV mode)
+============================================================ -->
+<section id="portfolio-sv" class="lang-section py-24 px-5 sm:px-8 bg-white" data-lang="sv" style="display:none;">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal mb-12">
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Portfolio</p>
+      <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+        Se vad jag kan bygga.
+      </h2>
+      <p class="text-muted mt-3" style="max-width:560px;">
+        Här är två publika projekt som visar hur jag bygger, testar och levererar AI-system.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <div class="reveal d1 card bg-cream rounded-2xl p-7 border border-slate-100/80">
+        <h3 class="font-display font-semibold text-forest-dark text-lg mb-1">AI Receptionist</h3>
+        <p class="text-muted text-sm leading-relaxed mb-3">
+          Full-stack AI-receptionist som fångar leads via chatt — med D1-databas och ägardashboard. Live demo och GitHub.
+        </p>
+        <div class="flex gap-4">
+          <a href="https://ai-receptionist-demo.yahya-shehabi01.workers.dev" target="_blank" rel="noopener noreferrer" class="ext-link text-sm">
+            Live demo
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+          <a href="https://github.com/06Yahya/ai-receptionist-demo" target="_blank" rel="noopener noreferrer" class="ext-link text-sm">
+            GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal d2 card bg-cream rounded-2xl p-7 border border-slate-100/80">
+        <h3 class="font-display font-semibold text-forest-dark text-lg mb-1">Agent Workflows</h3>
+        <p class="text-muted text-sm leading-relaxed mb-3">
+          Tre AI-arbetsflöden för sälj och research: prospektanalys, CRM-berikning och uppföljningsutkast med Workers AI.
+        </p>
+        <div class="flex gap-4">
+          <a href="https://agent-workflow-playground.yahya-shehabi01.workers.dev" target="_blank" rel="noopener noreferrer" class="ext-link text-sm">
+            Live demo
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+          <a href="https://github.com/06Yahya/agent-workflow-playground" target="_blank" rel="noopener noreferrer" class="ext-link text-sm">
+            GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reveal mt-6 text-center">
+      <p class="text-xs text-muted">
+        <a href="#" onclick="setLang('en');return false;" class="text-forest font-medium underline">Switch to English</a> for full details.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SV — HUR DET FUNKAR
+============================================================ -->
+<section class="lang-section py-24 px-5 sm:px-8 bg-white" data-lang="sv" style="display:none;">
   <div class="max-w-6xl mx-auto">
 
     <div class="reveal mb-14">
@@ -601,11 +1247,9 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
 
-      <!-- Step 1 -->
       <div class="reveal d1">
         <div class="step-num mb-1" aria-hidden="true">01</div>
         <div class="w-9 h-9 rounded-full bg-forest/10 flex items-center justify-center mb-5">
-          <!-- calendar -->
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                fill="none" stroke="#2D5F4E" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -621,11 +1265,9 @@
         </p>
       </div>
 
-      <!-- Step 2 -->
       <div class="reveal d2">
         <div class="step-num mb-1" aria-hidden="true">02</div>
         <div class="w-9 h-9 rounded-full bg-forest/10 flex items-center justify-center mb-5">
-          <!-- monitor -->
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                fill="none" stroke="#2D5F4E" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -640,20 +1282,18 @@
         </p>
       </div>
 
-      <!-- Step 3 -->
       <div class="reveal d3">
         <div class="step-num mb-1" aria-hidden="true">03</div>
-        <div class="w-9 h-9 rounded-full bg-forest/10 flex items-center justify-center mb-5">
-          <!-- wrench -->
+        <div class="w-9 h-9 rounded-xl bg-forest/10 flex items-center justify-center mb-5">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                fill="none" stroke="#2D5F4E" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
           </svg>
         </div>
-        <h3 class="font-display font-semibold text-forest-dark text-xl mb-3">Leverans &amp; överlämning</h3>
+        <h3 class="font-display font-semibold text-forest-dark text-xl mb-3">Leverans & överlämning</h3>
         <p class="text-muted text-sm leading-relaxed">
-          Funkar det? Va Bra! Inte? Då sitter vi och pratar och kommer till resultat du är nöjd med. Sedan sätter jag upp lösningen, visar hur du hanterar den, klart.
+          Funkar det? Bra! Inte? Då sitter vi och pratar och kommer till resultat du är nöjd med. Sedan sätter jag upp lösningen, visar hur du hanterar den, klart.
         </p>
       </div>
 
@@ -661,10 +1301,10 @@
   </div>
 </section>
 
-<!-- ===================================================
-     OM MIG
-==================================================== -->
-<section id="om-mig" class="py-24 px-5 sm:px-8">
+<!-- ============================================================
+     SV — OM MIG
+============================================================ -->
+<section id="om-mig" class="lang-section py-24 px-5 sm:px-8" data-lang="sv" style="display:none;">
   <div class="max-w-6xl mx-auto">
 
     <div class="reveal mb-6">
@@ -673,7 +1313,6 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
 
-      <!-- Left: editorial quote -->
       <div class="reveal">
         <div class="relative pl-1">
           <span class="font-display text-[7rem] leading-none text-forest/10 select-none absolute -top-4 -left-3"
@@ -686,7 +1325,6 @@
         </div>
       </div>
 
-      <!-- Right: bio -->
       <div class="reveal d2 space-y-5 text-muted leading-[1.7]" style="font-size: 1.0625rem;">
         <p>
           Jag heter Yahya Shihabe och bor i Piteå. Jag bygger AI-verktyg för
@@ -707,26 +1345,27 @@
   </div>
 </section>
 
-<!-- ===================================================
-     FINAL CTA
-==================================================== -->
-<section id="kontakt" class="py-28 px-5 sm:px-8"
+
+<!-- ============================================================
+     CONTACT / BOKA (shared)
+============================================================ -->
+<section id="contact" class="lang-section py-28 px-5 sm:px-8" data-lang="both"
          style="background: linear-gradient(135deg, #2D5F4E 0%, #1A3D31 100%);">
   <div class="max-w-2xl mx-auto text-center">
 
     <div class="reveal mb-4">
-      <span class="text-[0.7rem] text-white/40 uppercase tracking-[0.14em] font-medium">Nästa steg</span>
+      <span class="text-[0.7rem] text-white/40 uppercase tracking-[0.14em] font-medium" data-i18n="ctaSection.eyebrow">Next step</span>
     </div>
 
     <h2 class="reveal d1 font-display font-semibold text-white leading-tight tracking-[-0.02em] mb-6"
         style="font-size: clamp(2rem, 4.5vw, 3rem);">
-      Boka ett samtal —<br />
-      <em style="font-style:italic; color: #E8A87C;">gratis och utan krav.</em>
+      <span data-i18n="ctaSection.heading">Book a free call —</span><br />
+      <em style="font-style:italic; color: #E8A87C;" data-i18n="ctaSection.headingEm">no pressure, no commitment.</em>
     </h2>
 
     <p class="reveal d2 text-white/65 leading-relaxed mb-10 mx-auto"
-       style="font-size: 1.0625rem; max-width: 430px; line-height: 1.65;">
-      20 minuter. Vi pratar om vad som tar tid i ditt företag och om jag kan bygga något som hjälper. Du betalar inget förrän du sett demon.
+       style="font-size: 1.0625rem; max-width: 430px; line-height: 1.65;" data-i18n="ctaSection.sub">
+      20 minutes. We talk about what takes time in your business and whether I can build something that helps. You pay nothing until you've seen the demo.
     </p>
 
     <div class="reveal d3">
@@ -734,37 +1373,32 @@
          class="inline-flex items-center gap-2 bg-white text-forest-dark font-semibold
                 px-9 py-4 rounded-full text-base cursor-pointer
                 hover:bg-cream transition-colors duration-200"
-         style="font-family: 'Inter', sans-serif;">
-        Boka samtal
+         style="font-family: 'Inter', sans-serif;" data-i18n="ctaSection.cta">
+        Book a call
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
              fill="none" stroke="currentColor" stroke-width="2.5"
              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="m9 18 6-6-6-6"/>
         </svg>
       </a>
-      <p class="flex items-center justify-center gap-2 mt-6 text-white/65 text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-             fill="none" stroke="#C77A4A" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
-        Demo först — betalar när du är nöjd
+      <p class="flex items-center justify-center gap-2 mt-6 text-white/65 text-sm" data-i18n="ctaSection.guarantee">
+        Demo first — pay when you're happy
       </p>
     </div>
 
   </div>
 </section>
 
-<!-- ===================================================
-     BOKA — Cal.com inline widget
-==================================================== -->
-<section id="boka" class="py-20 px-5 sm:px-8 bg-cream">
+<!-- ============================================================
+     BOKA — Cal.com inline widget (shared)
+============================================================ -->
+<section id="boka" class="lang-section py-20 px-5 sm:px-8 bg-cream" data-lang="both">
   <div class="max-w-3xl mx-auto">
     <div class="reveal text-center mb-10">
-      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3">Välj en tid</p>
+      <p class="text-sm text-muted uppercase tracking-[0.14em] font-bold mb-3" data-i18n="booking.headingEyebrow">Pick a time</p>
       <h2 class="font-display font-semibold text-forest-dark leading-tight tracking-[-0.015em]"
-          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
-        Boka ett gratis samtal.
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);" data-i18n="booking.heading">
+        Book a free call.
       </h2>
     </div>
     <div id="cal-booking" style="min-height:600px;"></div>
@@ -773,31 +1407,210 @@
 
 </main>
 
-<!-- ===================================================
+<!-- ============================================================
      FOOTER
-==================================================== -->
+============================================================ -->
 <footer class="py-7 px-5 sm:px-8 border-t border-slate-100">
-  <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-3">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
     <span class="text-xs text-muted">© 2026 Yahya Shihabe</span>
-    <div class="flex items-center gap-5 text-xs text-muted flex-wrap">
+    <div class="flex items-center gap-5 text-xs text-muted flex-wrap justify-center">
       <a href="mailto:yahya.shehabi1@gmail.com"
          class="hover:text-forest-dark transition-colors duration-200">
         yahya.shehabi1@gmail.com
       </a>
-      <span class="text-slate-200" aria-hidden="true">·</span>
+      <span class="text-slate-200 hidden sm:inline" aria-hidden="true">·</span>
       <a href="tel:+46704540794"
          class="hover:text-forest-dark transition-colors duration-200">
         070 454 07 94
       </a>
+      <span class="text-slate-200 hidden sm:inline" aria-hidden="true">·</span>
+      <a href="https://github.com/06Yahya" target="_blank" rel="noopener noreferrer"
+         class="hover:text-forest-dark transition-colors duration-200">
+        GitHub
+      </a>
+      <span class="text-slate-200 hidden sm:inline" aria-hidden="true">·</span>
+      <a href="#"
+         onclick="setLang('en');return false;"
+         class="hover:text-forest-dark transition-colors duration-200">EN</a>
+      <span class="text-slate-200" aria-hidden="true">/</span>
+      <a href="#"
+         onclick="setLang('sv');return false;"
+         class="hover:text-forest-dark transition-colors duration-200">SV</a>
     </div>
   </div>
 </footer>
 
-<!-- ===================================================
+<!-- Mobile sticky CTA (shared) -->
+<div class="lang-section fixed bottom-0 inset-x-0 md:hidden z-40 bg-white/95 backdrop-blur-sm border-t border-slate-200 px-5 py-3" data-lang="both">
+  <a id="mobile-cta" href="#contact" class="btn-cta btn-cta-sm w-full justify-center" data-i18n="nav.ctaMobile">
+    Book a call
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2.5"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m9 18 6-6-6-6"/>
+    </svg>
+  </a>
+</div>
+
+<!-- ============================================================
      SCRIPTS
-==================================================== -->
+============================================================ -->
 <script>
-  // ── Scroll reveal ────────────────────────────────────────
+// ── i18n translations ─────────────────────────────────────────
+const LANG = {
+  en: {
+    nav: {
+      projects: 'Projects',
+      stack: 'Stack',
+      clientWork: 'Client Work',
+      about: 'About',
+      contact: 'Contact',
+      services: 'Services',
+      demos: 'Demos',
+      portfolio: 'Portfolio',
+      aboutSv: 'Om mig',
+      contactSv: 'Kontakt',
+      cta: 'Book a call',
+      ctaMobile: 'Book',
+    },
+    ctaSection: {
+      eyebrow: 'Next step',
+      heading: 'Book a free call —',
+      headingEm: 'no pressure, no commitment.',
+      sub: '20 minutes. We talk about what takes time in your business and whether I can build something that helps. You pay nothing until you\'ve seen the demo.',
+      cta: 'Book a call',
+      guarantee: 'Demo first — pay when you\'re happy',
+    },
+    booking: {
+      headingEyebrow: 'Pick a time',
+      heading: 'Book a free call.',
+    },
+    mobileCta: 'Book',
+  },
+  sv: {
+    nav: {
+      projects: 'Projekt',
+      stack: 'Teknik',
+      clientWork: 'Kundprojekt',
+      about: 'Om mig',
+      contact: 'Kontakt',
+      services: 'Tjänster',
+      demos: 'Demos',
+      portfolio: 'Portfolio',
+      aboutSv: 'Om mig',
+      contactSv: 'Kontakt',
+      cta: 'Boka samtal',
+      ctaMobile: 'Boka',
+    },
+    ctaSection: {
+      eyebrow: 'Nästa steg',
+      heading: 'Boka ett samtal —',
+      headingEm: 'gratis och utan krav.',
+      sub: '20 minuter. Vi pratar om vad som tar tid i ditt företag och om jag kan bygga något som hjälper. Du betalar inget förrän du sett demon.',
+      cta: 'Boka samtal',
+      guarantee: 'Demo först — betalar när du är nöjd',
+    },
+    booking: {
+      headingEyebrow: 'Välj en tid',
+      heading: 'Boka ett gratis samtal.',
+    },
+    mobileCta: 'Boka',
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+
+  // 1. Update toggle button states
+  document.querySelectorAll('.lang-toggle [data-lang]').forEach(el => {
+    el.classList.toggle('active', el.dataset.lang === lang);
+    el.setAttribute('aria-checked', el.dataset.lang === lang ? 'true' : 'false');
+  });
+
+  // 2. Update nav visibility
+  document.querySelectorAll('[data-i18n-group="nav-en"], [data-i18n-group="nav-sv"]').forEach(el => {
+    el.style.display = el.dataset.i18nGroup === 'nav-' + lang ? '' : 'none';
+  });
+
+  // 3. Show/hide lang sections with fade
+  document.querySelectorAll('[data-lang="en"], [data-lang="sv"]').forEach(el => {
+    if (el.dataset.lang === lang) {
+      el.style.display = '';
+      // Small delay to let display take effect, then fade in
+      requestAnimationFrame(() => {
+        el.classList.remove('fade-out');
+        el.classList.remove('hidden-lang');
+      });
+    } else {
+      el.classList.add('fade-out');
+      // After fade duration, hide
+      setTimeout(() => {
+        if (el.dataset.lang !== currentLang) {
+          el.style.display = 'none';
+          el.classList.remove('fade-out');
+        }
+      }, 350);
+    }
+  });
+
+  // 4. Update text on shared elements
+  updateI18nText(lang);
+
+  // 5. Update nav CTA href
+  const ctaLink = lang === 'sv' ? '#boka' : '#contact';
+  document.querySelectorAll('#nav-cta, #final-cta, #mobile-cta').forEach(el => {
+    el.setAttribute('href', ctaLink);
+  });
+
+  // 6. Update html lang attribute
+  document.documentElement.lang = lang === 'sv' ? 'sv' : 'en';
+
+  // 7. Update meta description
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (lang === 'sv') {
+    metaDesc.content = 'AI-chatbottar, webbappar och automationer byggda för svenska småföretag. Lokal utvecklare, snabb leverans, fast pris.';
+    document.querySelector('meta[property="og:title"]').content = 'Yahya Shihabe — AI för småföretag';
+    document.querySelector('meta[name="twitter:title"]').content = 'Yahya Shihabe — AI för småföretag';
+  } else {
+    metaDesc.content = 'I build production AI agents for local businesses and prove them with public repos, tests, and live demos. Full-stack TypeScript on Cloudflare.';
+    document.querySelector('meta[property="og:title"]').content = 'Yahya Shihabe — AI engineer & agency founder';
+    document.querySelector('meta[name="twitter:title"]').content = 'Yahya Shihabe — AI engineer & agency founder';
+  }
+
+  // 8. Mobile sticky CTA href
+  const mobileCta = document.getElementById('mobile-cta');
+  if (mobileCta) mobileCta.setAttribute('href', lang === 'sv' ? '#boka' : '#contact');
+}
+
+function updateI18nText(lang) {
+  const t = LANG[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const keys = el.dataset.i18n.split('.');
+    let val = t;
+    for (const key of keys) {
+      if (val) val = val[key];
+    }
+    if (val) {
+      if (el.tagName === 'META') {
+        el.content = val;
+      } else {
+        el.textContent = val;
+      }
+    }
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Check URL param for lang
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  const initLang = (urlLang === 'sv' || urlLang === 'en') ? urlLang : 'en';
+  setLang(initLang);
+
+  // Re-run reveal after lang init
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -809,26 +1622,29 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ── Nav scroll state ─────────────────────────────────────
+  // Nav scroll state
   const nav = document.getElementById('site-nav');
   const onScroll = () => {
     nav.classList.toggle('scrolled', window.scrollY > 16);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-</script>
 
-<!-- Mobile sticky CTA -->
-<div class="fixed bottom-0 inset-x-0 md:hidden z-40 bg-white/95 backdrop-blur-sm border-t border-slate-200 px-5 py-3">
-  <a href="#boka" class="btn-cta btn-cta-sm w-full justify-center">
-    Boka samtal
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-         fill="none" stroke="currentColor" stroke-width="2.5"
-         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="m9 18 6-6-6-6"/>
-    </svg>
-  </a>
-</div>
+  // Lang toggle click handlers
+  document.querySelectorAll('.lang-toggle [data-lang]').forEach(el => {
+    el.addEventListener('click', () => setLang(el.dataset.lang));
+  });
+
+  // Fix nav CTA href on load
+  const ctaLink = currentLang === 'sv' ? '#boka' : '#contact';
+  document.querySelectorAll('#nav-cta, #final-cta').forEach(el => {
+    el.setAttribute('href', ctaLink);
+  });
+});
+
+// ── Expose setLang globally for inline onclick ────────────────
+window.setLang = setLang;
+</script>
 
 <!-- Cal.com inline embed -->
 <script type="text/javascript">

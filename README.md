@@ -1,109 +1,94 @@
-# Yahya Shihabe — Landing Page
+# yahya-shihabe.pages.dev
 
-Personal landing page linked from demo sites. Tells prospects who you are, what you build, and books a call.
+**Portfolio & agency proof hub** — bilingual (English/Swedish) landing page that features public showcase projects alongside Swedish SMB client demos.
 
----
-
-## Deploy to Cloudflare Pages
-
-### Option A — Drag and drop (fastest)
-
-1. Go to [cloudflare.com](https://cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Direct Upload**
-2. Give the project a name (e.g. `yahya-shihabe`)
-3. Drag the entire project folder into the upload area
-4. Click **Deploy site**
-
-Done. You get a URL like `yahya-shihabe.pages.dev`.
-
-### Option B — Git (auto-deploy on push)
-
-1. Create a GitHub repo and push this folder
-2. Cloudflare Pages → **Connect to Git** → select the repo
-3. Build settings:
-   - **Build command:** *(leave empty)*
-   - **Build output directory:** `/`
-4. Deploy
-
-Every push to `main` auto-deploys.
+Live site: [yahya-shihabe.pages.dev](https://yahya-shihabe.pages.dev)
 
 ---
 
-## Add a custom domain
+## What this is
 
-1. Cloudflare Pages → your project → **Custom domains** → **Set up a custom domain**
-2. Enter your domain (e.g. `yahyashihabe.se`)
-3. If the domain is already on Cloudflare DNS: it configures automatically
-4. If not: add the CNAME record Cloudflare shows you at your registrar
+This is Showcase 3 in a portfolio proof roadmap. It serves two audiences from a single page:
 
----
+| Audience | Language | What they see |
+|----------|----------|---------------|
+| **Remote employers** | English | Project portfolio (Showcase 1 & 2), tech stack, architecture, deployed demos, SMB client work |
+| **Swedish SMB prospects** | Swedish | Service pitch, 3 live chatbot demos (FriluftsByn, LS Bygg, The Unit), process, about |
 
-## Swap the booking URL
+A language toggle (EN / SV) switches the view with a fade transition, and all shared UI elements (nav labels, CTAs, booking section) update text via `data-i18n` attributes.
 
-When you have your Google Calendar Appointment Schedule link:
+## Architecture
 
-1. Open `index.html`
-2. Find this line near the bottom of the file (inside `<script>`):
-
-```js
-const BOOKING_URL = 'https://calendar.app.google/REPLACE_ME';
-```
-
-3. Replace `https://calendar.app.google/REPLACE_ME` with your real URL
-4. Save and re-deploy
-
-All three booking buttons update from that one line.
-
-### How to set up Google Calendar Appointment Schedule
-
-1. Open [calendar.google.com](https://calendar.google.com)
-2. Click **+ Create** → **Appointment schedule**
-3. Title: e.g. "AI-samtal med Yahya — 20 min"
-4. Duration: 20 minutes
-5. Set your available hours (e.g. weekdays 09:00–17:00)
-6. Add buffer time if needed (15 min after each meeting)
-7. Click **Next** → **Save**
-8. Click **Open booking page** → copy the URL from your browser
-9. Paste that URL into `index.html` as described above
-
----
-
-## Update demo URLs
-
-The three demo links are hardcoded in `index.html`. Search for `onrender.com` to find them:
-
-| Demo | Current URL |
-|------|-------------|
-| FriluftsByn | `https://friluftsbyn-chatbot.onrender.com` |
-| LS Bygg & Snickeri | `https://ls-bygg-snickeri.onrender.com` |
-| The Unit | `https://the-unit-chatbot.onrender.com` |
-
-If a demo moves to a new URL, find and replace the old URL in `index.html`.
-
----
-
-## Files
+This is a **single static HTML file** deployed on Cloudflare Pages — no build step, no framework, no runtime dependencies.
 
 ```
-index.html     Main landing page (single file, no build step)
-favicon.svg    YS monogram — browser tab icon
-og.svg         OG image source (1200×630)
-og.png         OG image for link previews (Slack, iMessage, LinkedIn)
-README.md      This file
-CLIENTS.md     Sales context (not served, internal only)
+index.html
+├── Tailwind CSS (CDN) — utility styling
+├── Fraunces + Inter (Google Fonts) — display and body type
+├── Cal.com embed — booking widget
+└── i18n.js (inline) — language toggle and scroll-reveal
 ```
 
----
+## Featured projects
 
-## Regenerate og.png
+The English portfolio section links to two public proof projects:
 
-If you edit `og.svg`, re-export with:
+| Project | Live demo | GitHub |
+|---------|-----------|--------|
+| **[AI Receptionist & Lead Capture](https://ai-receptionist-demo.06yahya.workers.dev)** | Chat widget + D1 persistence + owner dashboard | [06Yahya/ai-receptionist-demo](https://github.com/06Yahya/ai-receptionist-demo) |
+| **[Agent Workflow Playground](https://agent-workflow-playground.06yahya.workers.dev)** | 3 workflows: prospect research, CRM enrichment, follow-up drafting | [06Yahya/agent-workflow-playground](https://github.com/06Yahya/agent-workflow-playground) |
+
+Screenshots for both projects are loaded from the respective GitHub repos' `docs/screenshots/` directories.
+
+## SMB demos
+
+Three deployed AI chatbots for Swedish local businesses:
+
+- **FriluftsByn** — [friluftsbyn-chatbot.onrender.com](https://friluftsbyn-chatbot.onrender.com) (nature experiences, Höga Kusten)
+- **LS Bygg & Snickeri** — [ls-bygg-snickeri.onrender.com](https://ls-bygg-snickeri.onrender.com) (construction, Piteå)
+- **The Unit** — [the-unit-chatbot.onrender.com](https://the-unit-chatbot.onrender.com) (gym & martial arts, Luleå)
+
+## Verification
+
+To validate a clean deploy:
+
+1. Load `https://yahya-shihabe.pages.dev` — English portfolio view renders with no console errors
+2. Click `SV` toggle — all content switches to Swedish, nav labels and CTAs change
+3. Click `EN` toggle — English content restores
+4. Check `#projects` section — two project cards visible with live demo links
+5. Check `#client-work` section — three chatbot demo cards visible
+6. Check `#contact` — Cal.com booking widget loads
+7. Check on mobile (390px viewport) — no horizontal overflow, sticky CTA visible
+
+## Local development
 
 ```bash
-# Export
-sips -s format png og.svg --out og.png
-
-# Compress (requires ImageMagick — brew install imagemagick)
-magick og.png -colors 256 -dither Riemersma og.png
+# No build step — open the file directly
+open index.html
+# Or serve with any static server for Cal.com embed to work
+python3 -m http.server 8000
 ```
 
-Target: under 300 KB.
+## Deployment
+
+Cloudflare Pages auto-deploys from the `main` branch of `06Yahya/Yahya-Shihabe`.
+
+```bash
+git add index.html
+git commit -m "update: portfolio proof hub with EN/SV toggle"
+git push origin main
+```
+
+The live site at `yahya-shihabe.pages.dev` updates within 60 seconds.
+
+## What this proves (for employers)
+
+- Cross-language UI with i18n architecture in a single static file
+- Public proof hub that aggregates and references deployed projects
+- Clean, accessible design with Tailwind and custom scroll-reveal
+- No build step, no framework — just HTML, CSS, and JS that ships
+- Deployed and inspectable end to end
+
+## License
+
+MIT
