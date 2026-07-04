@@ -1,6 +1,6 @@
 # yahya-shihabe.pages.dev
 
-**Portfolio & agency proof hub** - bilingual (English/Swedish) landing page that features public showcase projects alongside Swedish SMB proof-of-concept demos.
+**Portfolio & agency proof hub** - bilingual (English/Swedish) landing page that features public showcase projects alongside live Swedish SMB proof-of-concept demos.
 
 Live site: [yahya-shihabe.pages.dev](https://yahya-shihabe.pages.dev)
 
@@ -13,7 +13,7 @@ This is Showcase 3 in a portfolio proof roadmap. It serves two audiences from a 
 | Audience | Language | What they see |
 |----------|----------|---------------|
 | **Remote employers** | English | Project portfolio (Showcase 1 & 2), tech stack, architecture, deployed demos, SMB demo concepts |
-| **Swedish SMB prospects** | Swedish | Service pitch, 3 screenshot-backed chatbot concepts (FriluftsByn, LS Bygg, The Unit), process, about |
+| **Swedish SMB prospects** | Swedish | Service pitch, 3 live proof-of-concept websites (Bilexperten, Piteå Hud, Västernorrland Skog & Städ), process, about |
 
 A language toggle (EN / SV) switches the view with a fade transition, and all shared UI elements (nav labels, CTAs, booking section) update text via `data-i18n` attributes.
 
@@ -42,11 +42,11 @@ Screenshots for both projects are loaded from the respective GitHub repos' `docs
 
 ## SMB demos
 
-Three screenshot-backed chatbot prototypes for Swedish local-business niches. The live page links to local proof screenshots instead of archived Render apps.
+Three live Cloudflare Pages proof-of-concept websites for Swedish local-business niches. Each card uses a fresh local screenshot and links to the deployed demo.
 
-- **FriluftsByn** - `/assets/demo-friluftsbyn.png` (nature experiences, Höga Kusten)
-- **LS Bygg & Snickeri** - `/assets/demo-lsbygg.png` (construction, Piteå)
-- **The Unit** - `/assets/demo-theunit.png` (gym and martial arts, Luleå)
+- **[Bilexperten](https://bilexperten-poc.pages.dev)** - `/assets/demo-bilexperten.png` (car dealer and workshop, Motala)
+- **[Piteå Hud & Skönhetsvård](https://pitehud-poc.pages.dev)** - `/assets/demo-pitehud.png` (skincare clinic, Piteå)
+- **[Västernorrland Skog & Städ](https://preview-vasternorrland-skog-stad.pages.dev)** - `/assets/demo-vasternorrland-skog-stad.png` (cleaning and forestry, Timrå)
 
 ## Verification
 
@@ -56,7 +56,7 @@ To validate a clean deploy:
 2. Click `SV` toggle - all content switches to Swedish, nav labels and CTAs change
 3. Click `EN` toggle - English content restores
 4. Check `#projects` section - two project cards visible with live demo links
-5. Check `#client-work` section - three chatbot screenshot cards visible and all links return 200
+5. Check `#client-work` section - three live POC cards visible and all demo links return 200
 6. Check `#contact` - Cal.com booking widget loads
 7. Check on mobile (390px viewport) - no horizontal overflow, sticky CTA visible
 
