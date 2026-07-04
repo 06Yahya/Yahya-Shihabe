@@ -1,6 +1,6 @@
 # yahya-shihabe.pages.dev
 
-**Portfolio & agency proof hub** — bilingual (English/Swedish) landing page that features public showcase projects alongside Swedish SMB client demos.
+**Portfolio & agency proof hub** - bilingual (English/Swedish) landing page that features public showcase projects alongside Swedish SMB proof-of-concept demos.
 
 Live site: [yahya-shihabe.pages.dev](https://yahya-shihabe.pages.dev)
 
@@ -12,21 +12,21 @@ This is Showcase 3 in a portfolio proof roadmap. It serves two audiences from a 
 
 | Audience | Language | What they see |
 |----------|----------|---------------|
-| **Remote employers** | English | Project portfolio (Showcase 1 & 2), tech stack, architecture, deployed demos, SMB client work |
-| **Swedish SMB prospects** | Swedish | Service pitch, 3 live chatbot demos (FriluftsByn, LS Bygg, The Unit), process, about |
+| **Remote employers** | English | Project portfolio (Showcase 1 & 2), tech stack, architecture, deployed demos, SMB demo concepts |
+| **Swedish SMB prospects** | Swedish | Service pitch, 3 screenshot-backed chatbot concepts (FriluftsByn, LS Bygg, The Unit), process, about |
 
 A language toggle (EN / SV) switches the view with a fade transition, and all shared UI elements (nav labels, CTAs, booking section) update text via `data-i18n` attributes.
 
 ## Architecture
 
-This is a **single static HTML file** deployed on Cloudflare Pages — no build step, no framework, no runtime dependencies.
+This is a **single static HTML file** deployed on Cloudflare Pages - no build step, no framework, no runtime dependencies.
 
 ```
 index.html
-├── Tailwind CSS (CDN) — utility styling
-├── Fraunces + Inter (Google Fonts) — display and body type
-├── Cal.com embed — booking widget
-└── i18n.js (inline) — language toggle and scroll-reveal
+├── Tailwind CSS (CDN) - utility styling
+├── Fraunces + Inter (Google Fonts) - display and body type
+├── Cal.com embed - booking widget
+└── i18n.js (inline) - language toggle and scroll-reveal
 ```
 
 ## Featured projects
@@ -35,35 +35,35 @@ The English portfolio section links to two public proof projects:
 
 | Project | Live demo | GitHub |
 |---------|-----------|--------|
-| **[AI Receptionist & Lead Capture](https://ai-receptionist-demo.06yahya.workers.dev)** | Chat widget + D1 persistence + owner dashboard | [06Yahya/ai-receptionist-demo](https://github.com/06Yahya/ai-receptionist-demo) |
-| **[Agent Workflow Playground](https://agent-workflow-playground.06yahya.workers.dev)** | 3 workflows: prospect research, CRM enrichment, follow-up drafting | [06Yahya/agent-workflow-playground](https://github.com/06Yahya/agent-workflow-playground) |
+| **[AI Receptionist & Lead Capture](https://ai-receptionist-demo.yahya-shehabi01.workers.dev)** | Chat widget + D1 persistence + owner dashboard | [06Yahya/ai-receptionist-demo](https://github.com/06Yahya/ai-receptionist-demo) |
+| **[Agent Workflow Playground](https://agent-workflow-playground.yahya-shehabi01.workers.dev)** | 3 workflows: prospect research, CRM enrichment, follow-up drafting | [06Yahya/agent-workflow-playground](https://github.com/06Yahya/agent-workflow-playground) |
 
 Screenshots for both projects are loaded from the respective GitHub repos' `docs/screenshots/` directories.
 
 ## SMB demos
 
-Three deployed AI chatbots for Swedish local businesses:
+Three screenshot-backed chatbot prototypes for Swedish local-business niches. The live page links to local proof screenshots instead of archived Render apps.
 
-- **FriluftsByn** — [friluftsbyn-chatbot.onrender.com](https://friluftsbyn-chatbot.onrender.com) (nature experiences, Höga Kusten)
-- **LS Bygg & Snickeri** — [ls-bygg-snickeri.onrender.com](https://ls-bygg-snickeri.onrender.com) (construction, Piteå)
-- **The Unit** — [the-unit-chatbot.onrender.com](https://the-unit-chatbot.onrender.com) (gym & martial arts, Luleå)
+- **FriluftsByn** - `/assets/demo-friluftsbyn.png` (nature experiences, Höga Kusten)
+- **LS Bygg & Snickeri** - `/assets/demo-lsbygg.png` (construction, Piteå)
+- **The Unit** - `/assets/demo-theunit.png` (gym and martial arts, Luleå)
 
 ## Verification
 
 To validate a clean deploy:
 
-1. Load `https://yahya-shihabe.pages.dev` — English portfolio view renders with no console errors
-2. Click `SV` toggle — all content switches to Swedish, nav labels and CTAs change
-3. Click `EN` toggle — English content restores
-4. Check `#projects` section — two project cards visible with live demo links
-5. Check `#client-work` section — three chatbot demo cards visible
-6. Check `#contact` — Cal.com booking widget loads
-7. Check on mobile (390px viewport) — no horizontal overflow, sticky CTA visible
+1. Load `https://yahya-shihabe.pages.dev` - English portfolio view renders with no console errors
+2. Click `SV` toggle - all content switches to Swedish, nav labels and CTAs change
+3. Click `EN` toggle - English content restores
+4. Check `#projects` section - two project cards visible with live demo links
+5. Check `#client-work` section - three chatbot screenshot cards visible and all links return 200
+6. Check `#contact` - Cal.com booking widget loads
+7. Check on mobile (390px viewport) - no horizontal overflow, sticky CTA visible
 
 ## Local development
 
 ```bash
-# No build step — open the file directly
+# No build step - open the file directly
 open index.html
 # Or serve with any static server for Cal.com embed to work
 python3 -m http.server 8000
@@ -86,7 +86,7 @@ The live site at `yahya-shihabe.pages.dev` updates within 60 seconds.
 - Cross-language UI with i18n architecture in a single static file
 - Public proof hub that aggregates and references deployed projects
 - Clean, accessible design with Tailwind and custom scroll-reveal
-- No build step, no framework — just HTML, CSS, and JS that ships
+- No build step, no framework - just HTML, CSS, and JS that ships
 - Deployed and inspectable end to end
 
 ## License
